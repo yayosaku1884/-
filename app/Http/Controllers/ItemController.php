@@ -57,4 +57,53 @@ class ItemController extends Controller
 
         return view('item.add');
     }
+    /**
+        * 削除処理
+        *
+        * @param Request $request
+        * @param Item $item
+        * @return Response
+        */
+    public function destroy($id)
+    {
+        // Booksテーブルから指定のIDのレコード1件を取得
+        $item = Item::find($id);
+        // レコードを削除
+        $item->delete();
+        // 削除したら一覧画面にリダイレクト
+        return redirect()->route('item.index');
+    }
+
+    /**
+     * 詳細画面の表示
+     */
+    public function show($id)
+    {
+        $item = Item::find($id);
+
+        return view('item.show', compact('item'));
+    }
+
+    /**
+     * 編集画面の表示
+     */
+    public function edit($id)
+    {
+        $item = Item::find($id);
+
+        return view('item.edit', compact('item'));
+    }
+
+    /**
+     * 更新処理
+     */
+    public function update(Request $request, $id)
+    {
+        $item = Item::find($id);
+        $updateBook = $this->item->updateBook($request, $item);
+
+        return redirect()->route('item.index');
+    }
+
+
 }

@@ -15,7 +15,7 @@
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
-                                <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>
+                                <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>                               
                             </div>
                         </div>
                     </div>
@@ -29,6 +29,7 @@
                                 <th>種別</th>
                                 <th>詳細</th>
                             </tr>
+                            <td>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
@@ -37,6 +38,14 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->detail }}</td>
+                                    <td><a href="{{ route('show', $item->id) }}" class="btn btn-primary">詳細</a></td>
+                                    <td><a href="{{ route('edit', $item->id) }}" class="btn btn-info">編集</a></td>
+                                    <td>
+                                    <form action="{{ route('destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                                    </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

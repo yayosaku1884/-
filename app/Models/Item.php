@@ -33,4 +33,28 @@ class Item extends Model
      */
     protected $casts = [
     ];
+
+    /**
+     * 一覧画面表示用にitemsテーブルから全てのデータを取得
+     */
+    public function findAllItems()
+    {
+        return Item::all();
+    }
+
+    /**
+     * リクエストされたIDをもとにitemsテーブルのレコードを1件取得
+     */
+    public function findItemById($id)
+    {
+        return Item::find($id);
+    }
+
+    /**
+     * 削除処理
+     */
+    public function deleteItemById($id)
+    {
+        return $this->destroy($id);
+    }
 }
