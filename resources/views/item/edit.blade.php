@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', '商品登録')
+@section('title', '商品編集')
 
 @section('content_header')
-    <h1>商品登録</h1>
+    <h1>商品編集</h1>
 @stop
 
 @section('content')
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">登録</button>
+                        <button type="submit" class="btn btn-primary">編集</button>
                     </div>
                 </form>
             </div>
