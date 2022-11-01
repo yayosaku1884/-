@@ -73,15 +73,6 @@ class ItemController extends Controller
         return redirect('/items');
     }
 
-    /**
-     * 詳細画面の表示
-     */
-    public function show($id)
-    {
-        $item = Item::find($id);
-
-        return view('item.show', compact('item'));
-    }
 
     /**
      * 編集画面の表示
