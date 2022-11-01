@@ -25,7 +25,7 @@ class ItemController extends Controller
     {
         // 商品一覧取得
         $items = Item
-            ::where('items.status', 'active')
+            ::where('items.status', config('const.Item.ACTIVE'))
             ->select()
             ->get();
 
@@ -51,12 +51,11 @@ class ItemController extends Controller
                 'type' => $request->type,
                 'detail' => $request->detail,
             ]);
-
             return redirect('/items');
         }
-
         return view('item.add');
     }
+    
     /**
         * 削除処理
         *
@@ -71,7 +70,7 @@ class ItemController extends Controller
         // レコードを削除
         $item->delete();
         // 削除したら一覧画面にリダイレクト
-        return redirect()->route('item.index');
+        return redirect('/items');
     }
 
     /**
@@ -87,20 +86,29 @@ class ItemController extends Controller
     /**
      * 編集画面の表示
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $item = Item::find($id);
-
+        $request->session()->put('item_id', $request->id);
+        $item = Item::find($request->id);
         return view('item.edit', compact('item'));
     }
 
     /**
      * 更新処理
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $item = Item::find($id);
-        $updateBook = $this->item->updateBook($request, $item);
+        $id=$request->session()->get('item_id');
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+        $item=Item::find($id);
+        $item->user_id=Auth::user()->id;
+        $item->name=$request->name;
+        $item->status=config('const.Item.ACTIVE');
+        $item->type=0;
+        $item->detail= $request->detail;
+        $item->save();
 
         return redirect()->route('item.index');
     }
