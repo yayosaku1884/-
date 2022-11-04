@@ -1,13 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'ホーム画面')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>ホーム画面</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>商品管理システムへようこそ</p>
+    
+
 @stop
 
 @section('css')
@@ -15,6 +17,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> console.log(''); </script>
 @stop
+
 

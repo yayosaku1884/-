@@ -23,6 +23,7 @@ class ItemController extends Controller
      */
     public function index()
     {
+        
         // 商品一覧取得
         $items = Item
             ::where('items.status', config('const.Item.ACTIVE'))
@@ -103,6 +104,4 @@ class ItemController extends Controller
 
         return redirect()->route('item.index');
     }
-
-
 }

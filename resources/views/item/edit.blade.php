@@ -37,6 +37,11 @@
                             <label for="detail">詳細</label>
                             <input type="text" class="form-control" id="detail" name="detail" value="{{$item->detail}}">
                         </div>
+                        <form action="/upload" enctype="multipart/form-data" method="post">
+                        @csrf
+                        <input type="file" name="imgpath">
+                        <input type="submit" value="アップロード">
+                        </form>
                     </div>
 
                     <div class="card-footer">
