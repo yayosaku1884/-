@@ -26,10 +26,9 @@ class ItemController extends Controller
         
         // 商品一覧取得
         $items = Item
-            ::where('items.status', config('const.Item.ACTIVE'))
+            ::where('items.status','active')
             ->select()
             ->get();
-
         return view('item.index', compact('items'));
     }
 
