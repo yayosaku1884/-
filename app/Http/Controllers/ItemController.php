@@ -96,7 +96,7 @@ class ItemController extends Controller
         $item=Item::find($id);
         $item->user_id=Auth::user()->id;
         $item->name=$request->name;
-        $item->status=config('const.Item.ACTIVE');
+        $item->status='active';
         $item->type=0;
         $item->detail= $request->detail;
         $item->save();
